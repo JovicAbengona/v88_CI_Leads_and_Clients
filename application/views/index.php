@@ -56,7 +56,13 @@
         <h2>Report Dashboard</h2>
     </header>
     <section>
+        <!-- 
+            Declaring form with CSRD protection
+        -->
         <?php  $attributes = array("role" => "form"); echo form_open("setDateRange", $attributes);  ?>
+        <!-- 
+            Print form error if it fails validation
+        -->
         <?php  if($this->session->userdata("date_error") != NULL){ echo "<p class='error'>".$this->session->userdata("date_error")."</p>"; $this->session->unset_userdata("date_error");  }    ?>
             <label>From: <input type="date" name="from_date"></label>
             <label>To: <input type="date" name="to_date"></label>
@@ -71,6 +77,9 @@
                 </tr>
             </thead>
             <tbody>
+        <!-- 
+            If query's result isn't NULL, we print it to the table
+        -->
 <?php   if($this->session->userdata("leads") != NULL){ 
             foreach($this->session->userdata("leads") AS $lead){
 ?>
@@ -80,6 +89,9 @@
                 </tr>
 <?php       }
         }
+        /*
+            Print this if query didn't return any result
+        */
         else{
 ?>
             <tr>

@@ -7,20 +7,33 @@ class Main extends CI_Controller{
     }
 
 	public function setDateRange(){
+		/* DATE VALIDATION */
 		$this->form_validation->set_rules("from_date", "Date", "required");
 		$this->form_validation->set_rules("to_date", "Date", "required");
 
+		/* 
+			If form is submitted but no date is entered 
+		*/
 		if($this->form_validation->run() == FALSE){
 			$this->session->set_userdata("date_error", "Date can't be empty");
 			$this->session->set_userdata("leads", NULL);
 			redirect(base_url());
 		}
+		/* 
+			If TO DATE is earlier than FROM DATE
+		*/
 		else if($this->input->post("to_date") < $this->input->post("from_date")){
 			$this->session->set_userdata("date_error", "To Date can't be earlier than From Date!");
 			$this->session->set_userdata("leads", NULL);
 			redirect(base_url());
 		}
+		/* 
+			If there are no errors
+		*/
 		else{
+			/* 
+				Convert entered dates in a readable format and store it in a session
+			*/
 			$this->session->set_userdata("from_date", date("M m, Y", strtotime($this->input->post("from_date"))));
 			$this->session->set_userdata("to_date", date("M m, Y", strtotime($this->input->post("to_date"))));
 
