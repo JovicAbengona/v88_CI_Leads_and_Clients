@@ -3,6 +3,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Main extends CI_Controller{
     public function index(){
+		if($this->session->userdata("leads") == NULL){
+			$date_array = array(
+				"from_date" => "1970-01-01",
+				"to_date" => date("Y-m-d"),
+			);
+			
+			$this->load->model("Lead");
+			$query = $this->Lead->getLeads($date_array);
+	
+			$this->session->set_userdata("from_date", date("M d, Y", strtotime($date_array["from_date"])));
+			$this->session->set_userdata("to_date", date("M d, Y", strtotime($date_array["to_date"])));
+			$this->session->set_userdata("leads", $query);
+		}
         $this->load->view("index");
     }
 
@@ -34,8 +47,8 @@ class Main extends CI_Controller{
 			/* 
 				Convert entered dates in a readable format and store it in a session
 			*/
-			$this->session->set_userdata("from_date", date("M m, Y", strtotime($this->input->post("from_date"))));
-			$this->session->set_userdata("to_date", date("M m, Y", strtotime($this->input->post("to_date"))));
+			$this->session->set_userdata("from_date", date("M d, Y", strtotime($this->input->post("from_date"))));
+			$this->session->set_userdata("to_date", date("M d, Y", strtotime($this->input->post("to_date"))));
 
 			$date_array = array(
 				"from_date" => $this->input->post("from_date"),
@@ -50,7 +63,7 @@ class Main extends CI_Controller{
 				redirect(base_url());
 			}
 			else{
-				$this->session->set_userdata("leads", NULL);
+				$this->session->set_userdata("leads", "None");
 				redirect(base_url());
 			}
 		}

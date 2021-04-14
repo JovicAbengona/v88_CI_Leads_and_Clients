@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>static/index.css">
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script type="text/javascript">
-<?php   if($this->session->userdata("leads") != NULL){ 
+<?php   if($this->session->userdata("leads") != "None"){ 
 ?>
             window.onload = function() {
 
@@ -24,11 +24,14 @@
                     data: [{
                         type: "pie",
                         showInLegend: true,
-                        toolTipContent: "{name}: <strong>{y}%</strong>",
-                        indexLabel: "{name} - {y}%",
+                        toolTipContent: "{name}: <strong>{y}</strong>",
+                        indexLabel: "{name} - {y}",
                         dataPoints: [
-<?php                       foreach($this->session->userdata("leads") AS $lead){
-                                echo "{y:".$lead["number_of_leads"].", name: '".$lead["client_name"]."'},";
+<?php                       foreach($this->session->userdata("leads") AS $key => $lead){
+                                if($key == 0)
+                                    echo "{y:".$lead["number_of_leads"].", name: '".$lead["client_name"]."', exploded: true},";
+                                else
+                                    echo "{y:".$lead["number_of_leads"].", name: '".$lead["client_name"]."'},";
                             }
 ?>
                         ]
@@ -80,7 +83,7 @@
         <!-- 
             If query's result isn't NULL, we print it to the table
         -->
-<?php   if($this->session->userdata("leads") != NULL){ 
+<?php   if($this->session->userdata("leads") != "None"){ 
             foreach($this->session->userdata("leads") AS $lead){
 ?>
                 <tr>

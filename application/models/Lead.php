@@ -8,6 +8,7 @@
             $this->db->where("lead.registered_datetime >=", $date_array["from_date"]);
             $this->db->where("lead.registered_datetime <=", $date_array["to_date"]);
             $this->db->group_by("client.client_id");
+            $this->db->order_by("`number_of_leads`", "DESC");
             $query = $this->db->get();
 
             return $query->result_array();
