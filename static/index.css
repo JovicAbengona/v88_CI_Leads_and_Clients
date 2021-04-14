@@ -1,0 +1,119 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header{
+    background-color: #2a9d8f;
+    padding: 15px 20px;
+    color: white;
+}
+
+section{
+    padding: 30px 40px;
+}
+
+section form{
+    text-align: right;
+}
+
+section form label{
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+section form input{
+    border: 1px solid black;
+    border-radius: 4px;
+    margin-right: 20px;
+    padding: 5px;
+}
+
+section form button:hover{
+    cursor: pointer;
+}
+
+section form button{
+    background-color: #2a9d8f;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-weight: 600;
+    color: white;
+    border: none;
+}
+
+section form .error{
+    display: inline-block;
+    font-style: italic;
+    margin-right: 20px;
+    color: #e63946;
+    font-size: 14px;
+}
+
+section h4{
+    margin-top: 30px;
+}
+
+section table{
+    border-collapse: collapse;
+    margin-top: 15px;    
+}
+
+section table tbody{
+    overflow-y: auto;
+    display: block;
+    height: 240px;
+}
+
+section table tr{
+    display: block;
+}
+
+section table thead tr{
+    background-color: #2a9d8f;
+    text-align: left;
+    color: white;
+}
+
+section table tbody tr{
+    border-bottom: 1px solid #ced4da;
+}
+
+section table tbody tr:nth-child(odd){
+    background-color: #e9ecef;
+}
+
+section table th, section table td{
+    padding: 15px;
+    width: 215px;
+}
+
+section table tbody::-webkit-scrollbar{
+    width: 8px;
+}
+
+section table tbody::-webkit-scrollbar-track{
+    background-color: white;
+}
+
+section table tbody::-webkit-scrollbar-thumb{
+    background-color: #2a9d8f;
+}
+
+section #chartContainer{
+    margin: 50px auto;
+    display: block;
+    height: 500px;
+    width: 80%;
+}
+
+footer{
+    background-color: #2a9d8f;
+    text-align: center;
+    color: white;
+    padding: 10px;
+}
